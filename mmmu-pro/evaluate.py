@@ -10,13 +10,18 @@ import sys
 import pandas as pd
 import sys
 
+from datasets import load_dataset
+
+dataset = load_dataset('MMMU/MMMU_Pro', "standard (4 options)", split='test')
+option_dict = {example["id"]:example["options"] for example in dataset}
+
 
 def mmmu_process_results(results):
     pred = results['response']
     if isinstance(pred, dict):
         pred = ''
 
-    index2ans, all_choices = get_multi_choice_info(ast.literal_eval(str(results["options"])))
+    index2ans, all_choices = get_multi_choice_info(option_dict[results["id"]])
     parsed_pred = parse_multi_choice_response(pred, all_choices, index2ans)
 
     id = results["id"]
