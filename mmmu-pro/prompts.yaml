@@ -3,5 +3,10 @@ cot:
   standard: "Answer the preceding multiple choice question. The last line of your response should be of the following format: 'Answer: $LETTER' (without quotes) where LETTER is one of options. Think step by step before answering."
 direct:
   vision: "Answer with the option letter from the given choices directly. The last line of your response should be of the following format: 'Answer: $LETTER' (without quotes) where LETTER is one of options."
-  standard: "Answer with the option letter from the given choices directly."
+
+  # OLD PROMPT
+  # standard: "Answer with the option letter from the given choices directly."
+
+  # NEW PROMPT
+  standard: "Answer with the option letter from the given choices directly. Your response should a single capital letter.\nAnswer:"
   

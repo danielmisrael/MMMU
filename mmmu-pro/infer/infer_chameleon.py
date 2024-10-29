@@ -120,12 +120,17 @@ def run_and_save():
                 prompt, images = process_prompt(data)
                 if SETTING == 'vision':
                     prompt += "<image>"
-                    
-                # Hack to fix processing bug
-                if prompt.count("<image>") != len(images):
+                
+                if prompt.count("<image>") > len(images):
                     results.append('')
                     continue
+                
+                if prompt.count("<image>") < len(images):
+                    for _ in range(len(images) - prompt.count("<image>")):
+                        prompt = "<image>"+prompt
                     
+                # print("Prompt:")
+                # print(prompt)
                 inputs = processor(images=images, text=prompt, return_tensors="pt").to(model.device)
                 inputs = inputs.to(torch.bfloat16)
                 # try:

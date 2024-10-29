@@ -446,7 +446,7 @@ def get_multi_choice_info(options):
     return index2ans, all_choices
 
 
-NUM = 1730
+NUM = 50#1730
 
 def check_files(input_dir):
     pattern = re.compile(r"(?P<model_name>.+)_(?P<setting>standard|vision)_(?P<method>cot|direct)\.jsonl")
