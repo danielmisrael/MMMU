@@ -104,7 +104,7 @@ def save_results_to_file(results, output_path):
 def run_and_save():
     
     if SETTING == 'standard':
-        setting = 'standard (4 options)'
+        setting = 'standard (10 options)'
     elif SETTING == 'vision':
         setting = 'vision'
     dataset = load_dataset('MMMU/MMMU_Pro', setting, split='test').select(range(NUM))

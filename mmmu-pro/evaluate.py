@@ -12,7 +12,7 @@ import sys
 
 from datasets import load_dataset
 
-dataset = load_dataset('MMMU/MMMU_Pro', "standard (4 options)", split='test')
+dataset = load_dataset('MMMU/MMMU_Pro', "standard (10 options)", split='test')
 option_dict = {example["id"]:example["options"] for example in dataset}
 
 
@@ -21,7 +21,7 @@ def mmmu_process_results(results):
     if isinstance(pred, dict):
         pred = ''
 
-    index2ans, all_choices = get_multi_choice_info(option_dict[results["id"]])
+    index2ans, all_choices = get_multi_choice_info(ast.literal_eval(option_dict[results["id"]]))
     parsed_pred = parse_multi_choice_response(pred, all_choices, index2ans)
 
     id = results["id"]
@@ -446,7 +446,7 @@ def get_multi_choice_info(options):
     return index2ans, all_choices
 
 
-NUM = 50#1730
+NUM = 1730
 
 def check_files(input_dir):
     pattern = re.compile(r"(?P<model_name>.+)_(?P<setting>standard|vision)_(?P<method>cot|direct)\.jsonl")
